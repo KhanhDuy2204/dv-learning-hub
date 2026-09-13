@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -14,11 +15,14 @@
 :root {
     --navy: #10243f;
     --blue: #2376e8;
+    --blue-light: #eaf2ff;
     --background: #eef3f9;
     --text: #172b4d;
     --muted: #6d819b;
     --border: #dbe5f0;
     --green: #35bd91;
+    --orange: #f3a33b;
+    --purple: #9b6bea;
 }
 
 body {
@@ -26,6 +30,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--background);
     color: var(--text);
+    line-height: 1.6;
 }
 
 button,
@@ -38,16 +43,21 @@ button {
     cursor: pointer;
 }
 
+button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
 .app {
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 245px 1fr;
     min-height: 100vh;
 }
 
 .sidebar {
     background: var(--navy);
     color: white;
-    padding: 24px 16px;
+    padding: 25px 16px;
 }
 
 .logo {
@@ -58,7 +68,7 @@ button {
 .subtitle {
     color: #a9bfdc;
     font-size: 12px;
-    margin-top: 7px;
+    margin-top: 6px;
     margin-bottom: 28px;
 }
 
@@ -75,7 +85,7 @@ button {
     background: transparent;
     color: #dce8f8;
     text-align: left;
-    padding: 12px;
+    padding: 11px 12px;
     border-radius: 8px;
     margin: 3px 0;
 }
@@ -87,7 +97,7 @@ button {
 }
 
 .main {
-    padding: 26px;
+    padding: 28px;
     min-width: 0;
 }
 
@@ -100,7 +110,7 @@ button {
 }
 
 .topbar h1 {
-    margin: 4px 0 0;
+    margin: 5px 0 0;
     font-size: 28px;
 }
 
@@ -121,7 +131,7 @@ button {
     background: linear-gradient(120deg, #17385f, #287bd0);
     color: white;
     border-radius: 16px;
-    padding: 28px;
+    padding: 30px;
     margin: 22px 0;
 }
 
@@ -132,7 +142,6 @@ button {
 
 .hero p {
     color: #dceaff;
-    line-height: 1.6;
 }
 
 .btn {
@@ -145,7 +154,7 @@ button {
 }
 
 .btn:hover {
-    opacity: 0.88;
+    opacity: .88;
 }
 
 .btn.primary {
@@ -160,30 +169,31 @@ button {
     border-color: #a5e8ca;
 }
 
-.btn:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
+.btn.orange {
+    background: #fff0d8;
+    color: #87510b;
+    border-color: #f2d29a;
 }
 
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .card {
     background: white;
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 19px;
+    padding: 20px;
     box-shadow: 0 4px 16px #10243f0c;
 }
 
 .stat strong {
     display: block;
-    font-size: 29px;
-    margin-top: 8px;
+    font-size: 30px;
+    margin-top: 7px;
 }
 
 .layout {
@@ -194,7 +204,7 @@ button {
 
 .modules {
     display: grid;
-    gap: 10px;
+    gap: 11px;
 }
 
 .module {
@@ -214,8 +224,8 @@ button {
 }
 
 .module-icon {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 10px;
     display: grid;
     place-items: center;
@@ -225,7 +235,7 @@ button {
 }
 
 .progress {
-    height: 7px;
+    height: 8px;
     background: #e5edf5;
     border-radius: 20px;
     overflow: hidden;
@@ -236,6 +246,7 @@ button {
     height: 100%;
     background: var(--green);
     border-radius: 20px;
+    transition: width .25s;
 }
 
 .hidden {
@@ -260,7 +271,7 @@ button {
     gap: 5px;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--border);
-    margin: 20px 0;
+    margin: 22px 0;
 }
 
 .tab {
@@ -277,10 +288,41 @@ button {
     font-weight: bold;
 }
 
+.lesson-content h3 {
+    color: var(--navy);
+    margin-top: 22px;
+}
+
+.lesson-content h4 {
+    color: var(--blue);
+}
+
+.lesson-content ul {
+    padding-left: 22px;
+}
+
+.formula {
+    background: #f0f5fb;
+    border-left: 4px solid var(--blue);
+    padding: 13px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-family: Consolas, monospace;
+    white-space: pre-wrap;
+}
+
+.example {
+    background: #eefaf5;
+    border-left: 4px solid var(--green);
+    padding: 13px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+}
+
 .question {
     border: 1px solid var(--border);
     border-radius: 11px;
-    padding: 16px;
+    padding: 17px;
     margin: 12px 0;
     line-height: 1.65;
 }
@@ -305,8 +347,9 @@ button {
 }
 
 .hint,
-.answer {
-    padding: 12px;
+.answer,
+.error {
+    padding: 13px;
     border-radius: 8px;
     margin-top: 10px;
     font-size: 13px;
@@ -320,6 +363,11 @@ button {
 .answer {
     background: #e0f7ec;
     color: #126348;
+}
+
+.error {
+    background: #ffe5e5;
+    color: #9c2525;
 }
 
 .lesson-list {
@@ -337,9 +385,23 @@ button {
 }
 
 .lesson-button.active {
-    background: #e9f2ff;
+    background: var(--blue-light);
     border-color: var(--blue);
     color: #1458b4;
+}
+
+.lesson-button.done {
+    border-left: 5px solid var(--green);
+}
+
+.badge {
+    display: inline-block;
+    background: var(--blue-light);
+    color: #1458b4;
+    border-radius: 20px;
+    padding: 3px 9px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 @media (max-width: 850px) {
@@ -348,7 +410,7 @@ button {
     }
 
     .sidebar {
-        padding: 16px;
+        padding: 17px;
     }
 
     .nav {
@@ -428,8 +490,6 @@ button {
     >
 </div>
 
-<!-- TRANG CHỦ -->
-
 <section id="home">
 
     <div class="hero">
@@ -478,7 +538,7 @@ button {
             <p id="overallText" class="muted">0% hoàn thành</p>
 
             <div class="progress">
-                <span id="overallBar" style="width: 0%"></span>
+                <span id="overallBar" style="width:0%"></span>
             </div>
 
             <p class="muted">
@@ -490,61 +550,66 @@ button {
 
 </section>
 
-<!-- KHÓA HỌC -->
-
 <section id="course" class="hidden">
 
-<div class="card">
+<div class="layout">
 
-    <div class="muted">
-        Khóa học / <span id="moduleName"></span>
-    </div>
+    <div class="card">
 
-    <div class="course-header">
-
-        <div>
-            <div class="muted" id="lessonNumber"></div>
-            <h2 id="lessonTitle"></h2>
-            <p id="lessonDescription" class="muted"></p>
+        <div class="muted">
+            Khóa học / <span id="moduleName"></span>
         </div>
 
-        <button class="btn green" id="completeButton">
-            ✓ Đánh dấu đã làm
-        </button>
+        <div class="course-header">
+
+            <div>
+                <div class="muted" id="lessonNumber"></div>
+                <h2 id="lessonTitle"></h2>
+                <p id="lessonDescription" class="muted"></p>
+            </div>
+
+            <button class="btn green" id="completeButton">
+                ✓ Đánh dấu đã làm
+            </button>
+
+        </div>
+
+        <div style="display:flex;justify-content:space-between;margin:12px 0 6px;font-size:13px">
+            <span>Tiến độ module</span>
+            <b id="modulePercent">0%</b>
+        </div>
+
+        <div class="progress">
+            <span id="moduleBar" style="width:0%"></span>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="content">▤ Bài giảng</button>
+            <button class="tab" data-tab="quiz">☑ Trắc nghiệm</button>
+            <button class="tab" data-tab="essay">✎ Tự luận</button>
+            <button class="tab" data-tab="notes">▧ Ghi chú</button>
+        </div>
+
+        <div id="contentTab"></div>
+        <div id="quizTab" class="hidden"></div>
+        <div id="essayTab" class="hidden"></div>
+        <div id="notesTab" class="hidden"></div>
+
+        <div style="display:flex;justify-content:space-between;margin-top:18px">
+            <button class="btn" id="previousButton">← Bài trước</button>
+            <button class="btn primary" id="nextButton">Bài tiếp theo →</button>
+        </div>
 
     </div>
 
-    <div style="display:flex;justify-content:space-between;margin:12px 0 6px;font-size:13px">
-        <span>Tiến độ module</span>
-        <b id="modulePercent">0%</b>
-    </div>
-
-    <div class="progress">
-        <span id="moduleBar" style="width:0%"></span>
-    </div>
-
-    <div class="tabs">
-        <button class="tab active" data-tab="content">▤ Nội dung</button>
-        <button class="tab" data-tab="quiz">☑ Trắc nghiệm</button>
-        <button class="tab" data-tab="essay">✎ Tự luận</button>
-        <button class="tab" data-tab="notes">▧ Ghi chú</button>
-    </div>
-
-    <div id="contentTab"></div>
-    <div id="quizTab" class="hidden"></div>
-    <div id="essayTab" class="hidden"></div>
-    <div id="notesTab" class="hidden"></div>
-
-    <div style="display:flex;justify-content:space-between;margin-top:15px">
-        <button class="btn" id="previousButton">← Bài trước</button>
-        <button class="btn primary" id="nextButton">Bài tiếp theo →</button>
+    <div class="card">
+        <h3>Nội dung module</h3>
+        <div id="lessonList" class="lesson-list"></div>
     </div>
 
 </div>
 
 </section>
-
-<!-- TIẾN ĐỘ -->
 
 <section id="progress" class="hidden">
 
@@ -555,8 +620,6 @@ button {
 
 </section>
 
-<!-- GHI CHÚ -->
-
 <section id="notes" class="hidden">
 
 <div class="card">
@@ -566,8 +629,6 @@ button {
 
 </section>
 
-<!-- PROJECT -->
-
 <section id="project" class="hidden">
 
 <div class="card">
@@ -575,34 +636,48 @@ button {
     <h2>Project cuối khóa</h2>
 
     <div class="question">
-        <h3>1. Mạch đếm đồng bộ</h3>
+        <h3>Project 1 — Mạch đếm đồng bộ</h3>
         <p>
-            Thiết kế bộ đếm đồng bộ có reset, enable,
-            hiển thị trạng thái và mô phỏng waveform.
+            Thiết kế bộ đếm đồng bộ có ngõ vào clock,
+            reset, enable và các ngõ ra trạng thái.
+        </p>
+        <ul>
+            <li>Vẽ sơ đồ khối.</li>
+            <li>Lập bảng trạng thái.</li>
+            <li>Thiết kế bằng flip-flop.</li>
+            <li>Viết code Verilog.</li>
+            <li>Tạo testbench và kiểm tra waveform.</li>
+        </ul>
+    </div>
+
+    <div class="question">
+        <h3>Project 2 — FSM điều khiển cửa</h3>
+        <p>
+            Thiết kế FSM điều khiển hệ thống mở khóa cửa
+            bằng chuỗi tín hiệu đầu vào.
+        </p>
+        <ul>
+            <li>Xác định các trạng thái.</li>
+            <li>Vẽ sơ đồ chuyển trạng thái.</li>
+            <li>Lập bảng mã hóa trạng thái.</li>
+            <li>Viết FSM Moore hoặc Mealy.</li>
+            <li>Kiểm tra các chuỗi đúng và sai.</li>
+        </ul>
+    </div>
+
+    <div class="question">
+        <h3>Project 3 — Verification bằng SystemVerilog</h3>
+        <p>
+            Xây dựng testbench có transaction,
+            driver, monitor, scoreboard và coverage.
         </p>
     </div>
 
     <div class="question">
-        <h3>2. Bộ điều khiển FSM</h3>
+        <h3>Project 4 — Bộ xử lý đơn giản</h3>
         <p>
-            Thiết kế FSM Moore hoặc Mealy từ sơ đồ trạng thái
-            đến code RTL.
-        </p>
-    </div>
-
-    <div class="question">
-        <h3>3. Verification bằng SystemVerilog/UVM</h3>
-        <p>
-            Viết testbench, assertion, coverage,
-            driver, monitor và scoreboard.
-        </p>
-    </div>
-
-    <div class="question">
-        <h3>4. CPU RISC-V đơn giản</h3>
-        <p>
-            Xây dựng datapath, control unit
-            và mô phỏng các lệnh cơ bản.
+            Thiết kế CPU nhỏ gồm register file,
+            ALU, control unit và bộ nhớ.
         </p>
     </div>
 
@@ -621,20 +696,313 @@ const modules = [
     name: "Digital Logic",
     color: "#32bd91",
     lessons: [
-        ["Cổng logic và biểu thức Boolean",
-         "AND, OR, NOT, NAND, NOR, XOR, XNOR và biểu thức Boolean."],
 
-        ["Bảng chân trị và Karnaugh",
-         "Lập bảng chân trị và rút gọn hàm logic bằng Karnaugh."],
+    {
+        title: "Hệ thống số và biểu diễn dữ liệu",
+        description: "Hệ nhị phân, thập phân, bát phân, thập lục phân và mã hóa dữ liệu.",
+        content: `
+        <div class="lesson-content">
 
-        ["Mạch tổ hợp cơ bản",
-         "Adder, subtractor, comparator, encoder, decoder và multiplexer."],
+            <h3>1. Khái niệm</h3>
 
-        ["Mạch tuần tự",
-         "Latch, flip-flop, thanh ghi và bộ đếm."],
+            <p>
+                Hệ thống số là phương pháp biểu diễn số bằng một tập
+                các ký hiệu và quy tắc xác định. Trong mạch số,
+                hệ nhị phân được sử dụng vì mạch điện thường có hai
+                mức logic: 0 và 1.
+            </p>
 
-        ["FSM Moore và Mealy",
-         "Phân tích trạng thái, bảng chuyển trạng thái và ngõ ra."]
+            <h3>2. Các hệ thống số thường gặp</h3>
+
+            <ul>
+                <li>Thập phân: cơ số 10, dùng các chữ số 0 đến 9.</li>
+                <li>Nhị phân: cơ số 2, dùng 0 và 1.</li>
+                <li>Bát phân: cơ số 8, dùng 0 đến 7.</li>
+                <li>Thập lục phân: cơ số 16, dùng 0 đến 9 và A đến F.</li>
+            </ul>
+
+            <div class="formula">
+                Giá trị = Σ(chữ số × cơ số^vị trí)
+            </div>
+
+            <h3>3. Ví dụ chuyển đổi</h3>
+
+            <div class="example">
+                <b>Ví dụ:</b> Đổi số nhị phân 1011₂ sang thập phân.
+
+                <br><br>
+
+                1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰
+
+                <br>
+
+                = 8 + 0 + 2 + 1 = 11₁₀
+            </div>
+
+            <h3>4. Bit và byte</h3>
+
+            <ul>
+                <li>1 bit chỉ có thể nhận giá trị 0 hoặc 1.</li>
+                <li>4 bit tạo thành một nibble.</li>
+                <li>8 bit tạo thành một byte.</li>
+                <li>N bit có thể biểu diễn 2^N trạng thái khác nhau.</li>
+            </ul>
+
+            <h3>5. Kết luận</h3>
+
+            <p>
+                Hiểu hệ thống số là nền tảng để học biểu thức Boolean,
+                thiết kế mạch số, đọc waveform và viết code HDL.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Một nhóm 4 bit có thể biểu diễn bao nhiêu giá trị khác nhau?",
+            options: ["4", "8", "16", "32"],
+            correct: 2,
+            explanation: "N bit biểu diễn được 2^N giá trị. Với 4 bit: 2^4 = 16."
+        },
+        essay: "Trình bày các hệ thống số thường dùng trong kỹ thuật số. Chuyển 1101₂ sang thập phân và giải thích ý nghĩa của bit.",
+        hint: "Nêu cơ số, ký hiệu, công thức chuyển đổi và ví dụ.",
+        answer: "Hệ nhị phân có cơ số 2 và dùng 0,1. Hệ thập phân có cơ số 10. Hệ bát phân có cơ số 8. Hệ thập lục phân có cơ số 16. 1101₂ = 8 + 4 + 0 + 1 = 13₁₀. Bit là đơn vị dữ liệu nhỏ nhất, nhận giá trị 0 hoặc 1."
+    },
+
+    {
+        title: "Cổng logic và đại số Boolean",
+        description: "AND, OR, NOT, NAND, NOR, XOR, XNOR và các định luật Boolean.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Cổng AND</h3>
+
+            <p>
+                Cổng AND chỉ cho đầu ra bằng 1 khi tất cả đầu vào đều bằng 1.
+            </p>
+
+            <div class="formula">
+                Y = A · B
+            </div>
+
+            <h3>2. Cổng OR</h3>
+
+            <p>
+                Cổng OR cho đầu ra bằng 1 khi ít nhất một đầu vào bằng 1.
+            </p>
+
+            <div class="formula">
+                Y = A + B
+            </div>
+
+            <h3>3. Cổng NOT</h3>
+
+            <p>
+                Cổng NOT đảo trạng thái logic của đầu vào.
+            </p>
+
+            <div class="formula">
+                Y = A̅
+            </div>
+
+            <h3>4. XOR và XNOR</h3>
+
+            <ul>
+                <li>XOR bằng 1 khi hai đầu vào khác nhau.</li>
+                <li>XNOR bằng 1 khi hai đầu vào giống nhau.</li>
+            </ul>
+
+            <div class="formula">
+                XOR: Y = A ⊕ B
+
+                XNOR: Y = A ⊙ B
+            </div>
+
+            <h3>5. Định luật De Morgan</h3>
+
+            <div class="formula">
+                (A · B)̅ = A̅ + B̅
+
+                (A + B)̅ = A̅ · B̅
+            </div>
+
+            <h3>6. Tính chất quan trọng</h3>
+
+            <ul>
+                <li>A + 0 = A</li>
+                <li>A · 1 = A</li>
+                <li>A + 1 = 1</li>
+                <li>A · 0 = 0</li>
+                <li>A + A = A</li>
+                <li>A · A = A</li>
+                <li>A + A̅ = 1</li>
+                <li>A · A̅ = 0</li>
+            </ul>
+
+        </div>
+        `,
+        quiz: {
+            question: "Cổng XOR cho đầu ra bằng 1 khi nào?",
+            options: [
+                "Hai đầu vào đều bằng 0",
+                "Hai đầu vào đều bằng 1",
+                "Hai đầu vào khác nhau",
+                "Ít nhất một đầu vào bằng 1"
+            ],
+            correct: 2,
+            explanation: "XOR bằng 1 khi các đầu vào khác nhau."
+        },
+        essay: "Trình bày chức năng của AND, OR, NOT, XOR và giải thích hai định luật De Morgan.",
+        hint: "Nêu chức năng, biểu thức Boolean và ví dụ bảng chân trị.",
+        answer: "AND yêu cầu mọi đầu vào bằng 1. OR yêu cầu ít nhất một đầu vào bằng 1. NOT đảo đầu vào. XOR bằng 1 khi hai đầu vào khác nhau. De Morgan: phủ định của tích bằng tổng các phủ định; phủ định của tổng bằng tích các phủ định."
+    },
+
+    {
+        title: "Mạch tổ hợp: Adder, MUX, Decoder",
+        description: "Mạch cộng, bộ chọn dữ liệu, bộ giải mã và bộ mã hóa.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Mạch tổ hợp</h3>
+
+            <p>
+                Mạch tổ hợp là mạch có đầu ra chỉ phụ thuộc vào
+                giá trị đầu vào hiện tại. Mạch không có bộ nhớ.
+            </p>
+
+            <h3>2. Half Adder</h3>
+
+            <p>
+                Half Adder cộng hai bit A và B, tạo ra tổng S và bit nhớ C.
+            </p>
+
+            <div class="formula">
+                S = A ⊕ B
+
+                C = A · B
+            </div>
+
+            <h3>3. Full Adder</h3>
+
+            <p>
+                Full Adder cộng A, B và carry-in Cin.
+            </p>
+
+            <div class="formula">
+                S = A ⊕ B ⊕ Cin
+
+                Cout = A·B + Cin·(A ⊕ B)
+            </div>
+
+            <h3>4. Multiplexer</h3>
+
+            <p>
+                MUX chọn một trong nhiều đầu vào dữ liệu
+                dựa trên các tín hiệu chọn.
+            </p>
+
+            <div class="example">
+                MUX 4:1 có 4 đầu vào dữ liệu, 2 đường chọn
+                và 1 đầu ra.
+            </div>
+
+            <h3>5. Decoder</h3>
+
+            <p>
+                Decoder chuyển mã nhị phân đầu vào thành
+                một trong nhiều đường đầu ra.
+                Decoder n-to-2ⁿ có tối đa 2ⁿ đầu ra.
+            </p>
+
+            <h3>6. Encoder</h3>
+
+            <p>
+                Encoder thực hiện ngược lại decoder:
+                chuyển một đầu vào đang hoạt động thành mã nhị phân.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "MUX 4:1 cần bao nhiêu đường chọn?",
+            options: ["1", "2", "3", "4"],
+            correct: 1,
+            explanation: "2^2 = 4 nên MUX 4:1 cần 2 đường chọn."
+        },
+        essay: "So sánh Half Adder và Full Adder. Trình bày nguyên lý hoạt động của MUX 4:1.",
+        hint: "Nêu số đầu vào, carry-in, công thức và vai trò đường chọn.",
+        answer: "Half Adder cộng hai bit và tạo S,C. Full Adder cộng A,B,Cin và tạo S,Cout. MUX 4:1 có bốn đầu vào dữ liệu, hai đường chọn và một đầu ra. Tổ hợp hai bit chọn sẽ quyết định đầu vào nào được đưa ra."
+    },
+
+    {
+        title: "Mạch tuần tự, Flip-Flop và Counter",
+        description: "Clock, latch, flip-flop, thanh ghi và bộ đếm.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Mạch tuần tự</h3>
+
+            <p>
+                Mạch tuần tự có đầu ra phụ thuộc vào đầu vào hiện tại
+                và trạng thái trước đó. Vì vậy mạch có khả năng lưu trữ.
+            </p>
+
+            <h3>2. Clock</h3>
+
+            <p>
+                Clock là tín hiệu đồng bộ dùng để xác định thời điểm
+                mạch cập nhật trạng thái. Với flip-flop cạnh lên,
+                trạng thái được cập nhật tại cạnh lên của clock.
+            </p>
+
+            <h3>3. D Flip-Flop</h3>
+
+            <div class="formula">
+                Q(next) = D
+            </div>
+
+            <p>
+                D Flip-Flop lưu giá trị D tại thời điểm kích hoạt clock.
+            </p>
+
+            <h3>4. T Flip-Flop</h3>
+
+            <ul>
+                <li>T = 0: giữ nguyên trạng thái.</li>
+                <li>T = 1: đảo trạng thái.</li>
+            </ul>
+
+            <h3>5. Bộ đếm</h3>
+
+            <p>
+                Bộ đếm là mạch tuần tự dùng để đếm số xung clock.
+                Bộ đếm đồng bộ sử dụng chung một clock cho các flip-flop.
+            </p>
+
+            <h3>6. Thanh ghi</h3>
+
+            <p>
+                Thanh ghi là tập hợp nhiều flip-flop dùng để lưu
+                một từ nhị phân. Ví dụ thanh ghi 8 bit gồm 8 flip-flop.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Điểm khác biệt chính của mạch tuần tự là gì?",
+            options: [
+                "Không có đầu vào",
+                "Có bộ nhớ hoặc trạng thái trước đó",
+                "Chỉ dùng cổng NOT",
+                "Không cần clock trong mọi trường hợp"
+            ],
+            correct: 1,
+            explanation: "Mạch tuần tự phụ thuộc vào đầu vào hiện tại và trạng thái trước đó."
+        },
+        essay: "Phân biệt mạch tổ hợp và mạch tuần tự. Giải thích hoạt động của D Flip-Flop và bộ đếm đồng bộ.",
+        hint: "So sánh bộ nhớ, clock, trạng thái và ví dụ ứng dụng.",
+        answer: "Mạch tổ hợp không có bộ nhớ, đầu ra chỉ phụ thuộc đầu vào hiện tại. Mạch tuần tự có trạng thái và thường sử dụng clock. D Flip-Flop lưu D tại cạnh clock. Bộ đếm đồng bộ dùng chung một clock cho các flip-flop."
+    }
+
     ]
 },
 
@@ -642,53 +1010,772 @@ const modules = [
     name: "Verilog HDL",
     color: "#4ca5f5",
     lessons: [
-        ["Cú pháp Verilog cơ bản",
-         "Module, port, wire, reg, assign và always block."],
 
-        ["Mạch tổ hợp bằng Verilog",
-         "Mô tả mạch tổ hợp bằng always @(*)." ],
+    {
+        title: "Cấu trúc module Verilog",
+        description: "Module, port, wire, reg, logic và cách mô tả phần cứng.",
+        content: `
+        <div class="lesson-content">
 
-        ["Mạch tuần tự bằng Verilog",
-         "Clock, reset và non-blocking assignment."],
+            <h3>1. Module</h3>
 
-        ["Testbench Verilog",
-         "Tạo stimulus, clock, reset và quan sát waveform."]
+            <p>
+                Module là đơn vị thiết kế cơ bản trong Verilog.
+                Một module mô tả một khối phần cứng có đầu vào và đầu ra.
+            </p>
+
+            <div class="formula">
+                module ten_module(
+                    input  wire A,
+                    input  wire B,
+                    output wire Y
+                );
+
+                endmodule
+            </div>
+
+            <h3>2. Input và output</h3>
+
+            <ul>
+                <li>input: cổng đầu vào.</li>
+                <li>output: cổng đầu ra.</li>
+                <li>inout: cổng hai chiều.</li>
+            </ul>
+
+            <h3>3. wire và reg</h3>
+
+            <p>
+                wire thường dùng cho kết nối liên tục.
+                reg dùng cho biến được gán trong khối procedural.
+                Trong SystemVerilog, logic thường được sử dụng thay thế
+                cho nhiều trường hợp của wire và reg.
+            </p>
+
+            <h3>4. assign</h3>
+
+            <div class="formula">
+                assign Y = A & B;
+            </div>
+
+            <p>
+                Câu lệnh assign mô tả phép gán liên tục,
+                phù hợp với mạch tổ hợp đơn giản.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Từ khóa nào dùng để khai báo một module?",
+            options: ["function", "module", "entity", "design"],
+            correct: 1,
+            explanation: "Verilog sử dụng từ khóa module để bắt đầu một module."
+        },
+        essay: "Trình bày cấu trúc cơ bản của một module Verilog và giải thích input, output, wire, reg.",
+        hint: "Viết một module AND đơn giản làm ví dụ.",
+        answer: "Module là đơn vị thiết kế cơ bản của Verilog. input là cổng vào, output là cổng ra, wire là tín hiệu kết nối, reg là biến được gán trong procedural block. Ví dụ: module and_gate(input A,B, output Y); assign Y=A&B; endmodule."
+    },
+
+    {
+        title: "Mô tả mạch tổ hợp bằng Verilog",
+        description: "assign, always @(*) và blocking assignment.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Mạch tổ hợp</h3>
+
+            <p>
+                Mạch tổ hợp phải tạo ra đầu ra từ các đầu vào hiện tại.
+                Khi mô tả bằng always block, cần đưa đầy đủ các tín hiệu
+                đầu vào vào danh sách nhạy.
+            </p>
+
+            <h3>2. always @(*)</h3>
+
+            <div class="formula">
+                always @(*) begin
+                    Y = A & B;
+                end
+            </div>
+
+            <p>
+                Ký hiệu (*) giúp công cụ tự động theo dõi các tín hiệu
+                được sử dụng bên trong khối.
+            </p>
+
+            <h3>3. Blocking assignment</h3>
+
+            <div class="formula">
+                Y = A | B;
+            </div>
+
+            <p>
+                Blocking assignment thường dùng để mô tả mạch tổ hợp.
+                Các lệnh được thực hiện theo thứ tự trong procedural block.
+            </p>
+
+            <h3>4. Tránh latch</h3>
+
+            <p>
+                Nếu một biến không được gán trong mọi nhánh điều kiện,
+                công cụ có thể suy ra latch. Để tránh latch,
+                nên gán giá trị mặc định trước các câu lệnh if/case.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Trong mạch tổ hợp, always @(*) có tác dụng gì?",
+            options: [
+                "Chỉ chạy một lần",
+                "Theo dõi các tín hiệu đầu vào được sử dụng",
+                "Tạo clock",
+                "Xóa toàn bộ thanh ghi"
+            ],
+            correct: 1,
+            explanation: "always @(*) tự động đưa các tín hiệu liên quan vào sensitivity list."
+        },
+        essay: "Viết và giải thích module Verilog mô tả MUX 2:1.",
+        hint: "MUX 2:1 có A,B là dữ liệu, S là chọn và Y là đầu ra.",
+        answer: "Có thể viết: assign Y = S ? B : A; hoặc dùng always @(*) begin if(S) Y=B; else Y=A; end. Khi S=0, Y=A; khi S=1, Y=B."
+    },
+
+    {
+        title: "Mô tả mạch tuần tự bằng Verilog",
+        description: "Clock, reset, always @(posedge clk) và non-blocking assignment.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. always @(posedge clk)</h3>
+
+            <p>
+                Khối này được kích hoạt tại cạnh lên của clock.
+                Đây là cấu trúc thường dùng để mô tả flip-flop.
+            </p>
+
+            <div class="formula">
+                always @(posedge clk) begin
+                    Q <= D;
+                end
+            </div>
+
+            <h3>2. Non-blocking assignment</h3>
+
+            <p>
+                Non-blocking assignment sử dụng ký hiệu <=.
+                Nó phù hợp để mô tả cập nhật trạng thái đồng thời
+                trong mạch tuần tự.
+            </p>
+
+            <h3>3. Reset đồng bộ</h3>
+
+            <div class="formula">
+                always @(posedge clk) begin
+                    if (reset)
+                        Q <= 1'b0;
+                    else
+                        Q <= D;
+                end
+            </div>
+
+            <p>
+                Reset đồng bộ chỉ có tác dụng tại cạnh clock.
+            </p>
+
+            <h3>4. Reset bất đồng bộ</h3>
+
+            <div class="formula">
+                always @(posedge clk or posedge reset)
+            </div>
+
+            <p>
+                Reset bất đồng bộ có thể tác động ngay khi reset thay đổi,
+                không cần chờ cạnh clock.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Ký hiệu nào thường dùng cho non-blocking assignment?",
+            options: ["=", "==", "<=", "!="],
+            correct: 2,
+            explanation: "Non-blocking assignment dùng ký hiệu <=."
+        },
+        essay: "Phân biệt reset đồng bộ và reset bất đồng bộ. Viết ví dụ Verilog cho mỗi loại.",
+        hint: "Chú ý sensitivity list của always block.",
+        answer: "Reset đồng bộ được kiểm tra bên trong always @(posedge clk), nên chỉ tác động tại cạnh clock. Reset bất đồng bộ được đưa vào sensitivity list, ví dụ always @(posedge clk or posedge reset), nên có thể tác động ngay khi reset thay đổi."
+    },
+
+    {
+        title: "Testbench và mô phỏng waveform",
+        description: "Stimulus, clock generation, reset và kiểm tra DUT.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Testbench</h3>
+
+            <p>
+                Testbench là module dùng để kiểm tra thiết kế DUT.
+                Testbench thường không có cổng input/output bên ngoài.
+            </p>
+
+            <h3>2. DUT</h3>
+
+            <p>
+                DUT là Design Under Test, tức khối thiết kế đang được kiểm tra.
+                Testbench tạo tín hiệu đầu vào và quan sát đầu ra của DUT.
+            </p>
+
+            <h3>3. Tạo clock</h3>
+
+            <div class="formula">
+                always #5 clk = ~clk;
+            </div>
+
+            <p>
+                Câu lệnh trên tạo clock đổi trạng thái sau mỗi 5 đơn vị thời gian.
+            </p>
+
+            <h3>4. Tạo stimulus</h3>
+
+            <div class="formula">
+                initial begin
+                    A = 0;
+                    B = 0;
+                    #10 A = 1;
+                    #10 B = 1;
+                    #10 $finish;
+                end
+            </div>
+
+            <h3>5. Waveform</h3>
+
+            <p>
+                Waveform cho phép quan sát quan hệ thời gian giữa clock,
+                input, output, reset và trạng thái bên trong.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "DUT là viết tắt của cụm từ nào?",
+            options: [
+                "Data Under Test",
+                "Design Under Test",
+                "Digital Unit Type",
+                "Device Utility Tool"
+            ],
+            correct: 1,
+            explanation: "DUT là Design Under Test."
+        },
+        essay: "Trình bày vai trò của testbench và các thành phần cơ bản của một testbench Verilog.",
+        hint: "Nêu DUT, stimulus, clock, reset, monitor và waveform.",
+        answer: "Testbench dùng để kiểm tra DUT. Các thành phần thường gồm instance DUT, tín hiệu kích thích, khối tạo clock, khối reset, các lệnh kiểm tra và công cụ quan sát waveform."
+    }
+
     ]
 },
 
 {
     name: "SystemVerilog",
-    color: "#a66bea",
+    color: "#9b6bea",
     lessons: [
-        ["Kiểu dữ liệu SystemVerilog",
-         "logic, bit, enum, struct và array."],
 
-        ["Interface và modport",
-         "Kết nối DUT và testbench có tổ chức."],
+    {
+        title: "Kiểu dữ liệu SystemVerilog",
+        description: "logic, bit, enum, struct và array.",
+        content: `
+        <div class="lesson-content">
 
-        ["Assertion cơ bản",
-         "Immediate assertion và concurrent assertion."],
+            <h3>1. logic</h3>
 
-        ["Coverage",
-         "Code coverage và functional coverage."]
+            <p>
+                logic là kiểu dữ liệu 4 trạng thái:
+                0, 1, X và Z. Nó thường được dùng trong thiết kế RTL.
+            </p>
+
+            <h3>2. bit</h3>
+
+            <p>
+                bit là kiểu dữ liệu 2 trạng thái, chỉ nhận 0 hoặc 1.
+                Kiểu bit thường phù hợp khi không cần mô phỏng X và Z.
+            </p>
+
+            <h3>3. enum</h3>
+
+            <p>
+                enum dùng để tạo tập các giá trị có tên,
+                rất phù hợp để mã hóa trạng thái FSM.
+            </p>
+
+            <div class="formula">
+                typedef enum logic [1:0] {
+                    IDLE,
+                    RUN,
+                    DONE
+                } state_t;
+            </div>
+
+            <h3>4. struct</h3>
+
+            <p>
+                struct nhóm nhiều trường dữ liệu khác nhau
+                thành một kiểu dữ liệu duy nhất.
+            </p>
+
+            <h3>5. Array</h3>
+
+            <p>
+                Array dùng để lưu nhiều phần tử cùng kiểu dữ liệu,
+                ví dụ bộ nhớ hoặc danh sách transaction.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Kiểu logic trong SystemVerilog có bao nhiêu trạng thái?",
+            options: ["2", "3", "4", "8"],
+            correct: 2,
+            explanation: "logic có 4 trạng thái: 0, 1, X và Z."
+        },
+        essay: "So sánh logic và bit. Giải thích vì sao enum hữu ích khi thiết kế FSM.",
+        hint: "Nêu số trạng thái và khả năng biểu diễn X/Z.",
+        answer: "logic là kiểu 4 trạng thái gồm 0,1,X,Z. bit là kiểu 2 trạng thái gồm 0,1. enum cho phép đặt tên cho các trạng thái, giúp code FSM dễ đọc, dễ kiểm tra và giảm nhầm lẫn."
+    },
+
+    {
+        title: "always_comb và always_ff",
+        description: "Cấu trúc hiện đại để mô tả mạch tổ hợp và tuần tự.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. always_comb</h3>
+
+            <p>
+                always_comb dùng để mô tả mạch tổ hợp.
+                Công cụ tự động xử lý sensitivity và hỗ trợ kiểm tra
+                các lỗi liên quan đến mạch tổ hợp.
+            </p>
+
+            <div class="formula">
+                always_comb begin
+                    Y = A & B;
+                end
+            </div>
+
+            <h3>2. always_ff</h3>
+
+            <p>
+                always_ff dùng để mô tả flip-flop hoặc mạch tuần tự.
+                Thông thường khối có một sự kiện clock chính.
+            </p>
+
+            <div class="formula">
+                always_ff @(posedge clk) begin
+                    Q <= D;
+                end
+            </div>
+
+            <h3>3. Lợi ích</h3>
+
+            <ul>
+                <li>Code rõ ràng hơn.</li>
+                <li>Phân biệt tổ hợp và tuần tự.</li>
+                <li>Hỗ trợ công cụ kiểm tra lỗi.</li>
+                <li>Giúp nhóm thiết kế thống nhất coding style.</li>
+            </ul>
+
+        </div>
+        `,
+        quiz: {
+            question: "always_ff thường dùng để mô tả loại mạch nào?",
+            options: ["Mạch tổ hợp", "Mạch tuần tự", "Mạch nguồn", "Mạch analog"],
+            correct: 1,
+            explanation: "always_ff thường dùng để mô tả flip-flop và mạch tuần tự."
+        },
+        essay: "Phân biệt always_comb và always_ff. Cho ví dụ ngắn cho mỗi loại.",
+        hint: "always_comb cho logic tổ hợp; always_ff cho logic có clock.",
+        answer: "always_comb dùng cho mạch tổ hợp, ví dụ Y=A&B. always_ff dùng cho mạch tuần tự, ví dụ always_ff @(posedge clk) Q<=D. Việc phân chia giúp code rõ ràng và công cụ dễ kiểm tra."
+    },
+
+    {
+        title: "Interface và modport",
+        description: "Đóng gói các tín hiệu kết nối giữa DUT và testbench.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Interface</h3>
+
+            <p>
+                Interface là một nhóm các tín hiệu liên quan
+                được đóng gói thành một khối. Nó giúp giảm số lượng
+                kết nối trực tiếp giữa các module.
+            </p>
+
+            <div class="formula">
+                interface bus_if;
+
+                    logic clk;
+                    logic valid;
+                    logic ready;
+                    logic [7:0] data;
+
+                endinterface
+            </div>
+
+            <h3>2. modport</h3>
+
+            <p>
+                modport quy định hướng và quyền sử dụng tín hiệu
+                đối với từng thành phần, ví dụ DUT hoặc testbench.
+            </p>
+
+            <h3>3. Lợi ích</h3>
+
+            <ul>
+                <li>Giảm dây nối thủ công.</li>
+                <li>Code dễ đọc.</li>
+                <li>Dễ tái sử dụng.</li>
+                <li>Phân biệt rõ tín hiệu vào và ra.</li>
+            </ul>
+
+        </div>
+        `,
+        quiz: {
+            question: "Interface có tác dụng chính nào?",
+            options: [
+                "Tạo nguồn điện",
+                "Đóng gói nhóm tín hiệu kết nối",
+                "Thay thế mọi module",
+                "Chỉ tạo clock"
+            ],
+            correct: 1,
+            explanation: "Interface đóng gói các tín hiệu liên quan."
+        },
+        essay: "Giải thích interface và modport trong SystemVerilog. Nêu lợi ích khi dùng trong testbench.",
+        hint: "Nêu nhóm tín hiệu, hướng tín hiệu và khả năng tái sử dụng.",
+        answer: "Interface nhóm các tín hiệu liên quan thành một khối kết nối. modport quy định hướng sử dụng các tín hiệu cho từng thành phần. Chúng giúp giảm dây nối, tăng tính rõ ràng và tái sử dụng testbench."
+    },
+
+    {
+        title: "Assertion và Functional Coverage",
+        description: "Kiểm tra thuộc tính thiết kế và đo mức độ bao phủ kiểm thử.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Assertion</h3>
+
+            <p>
+                Assertion là cơ chế kiểm tra một điều kiện hoặc thuộc tính
+                phải đúng trong quá trình mô phỏng.
+            </p>
+
+            <div class="formula">
+                assert (reset == 0);
+            </div>
+
+            <h3>2. Immediate assertion</h3>
+
+            <p>
+                Immediate assertion được kiểm tra ngay tại thời điểm
+                câu lệnh được thực thi.
+            </p>
+
+            <h3>3. Concurrent assertion</h3>
+
+            <p>
+                Concurrent assertion kiểm tra quan hệ theo thời gian,
+                thường kết hợp với clock và toán tử thuộc tính.
+            </p>
+
+            <h3>4. Coverage</h3>
+
+            <p>
+                Coverage cho biết các trường hợp thiết kế đã được kiểm tra
+                đến mức nào.
+            </p>
+
+            <ul>
+                <li>Code coverage: mức độ các dòng hoặc nhánh code được chạy.</li>
+                <li>Functional coverage: các chức năng và trường hợp đặc biệt đã được kiểm tra.</li>
+            </ul>
+
+        </div>
+        `,
+        quiz: {
+            question: "Functional coverage dùng để đo điều gì?",
+            options: [
+                "Tốc độ clock",
+                "Mức độ bao phủ chức năng được kiểm thử",
+                "Điện áp nguồn",
+                "Số lượng module"
+            ],
+            correct: 1,
+            explanation: "Functional coverage đo mức độ các chức năng cần kiểm tra đã được bao phủ."
+        },
+        essay: "Trình bày vai trò của assertion và functional coverage trong verification.",
+        hint: "Assertion kiểm tra điều kiện; coverage đo mức độ kiểm thử.",
+        answer: "Assertion tự động phát hiện khi thuộc tính thiết kế bị vi phạm. Functional coverage đo các chức năng, trạng thái hoặc trường hợp kiểm thử đã được thực hiện, giúp đánh giá chất lượng verification."
+    }
+
     ]
 },
 
 {
     name: "UVM",
-    color: "#f39a35",
+    color: "#f3a33b",
     lessons: [
-        ["Tổng quan UVM",
-         "Sequence, driver, monitor, agent và environment."],
 
-        ["UVM testbench architecture",
-         "Cấu trúc testbench và luồng giao dịch."],
+    {
+        title: "Tổng quan kiến trúc UVM",
+        description: "Transaction, sequence, driver, monitor, agent, environment và test.",
+        content: `
+        <div class="lesson-content">
 
-        ["Sequence và sequencer",
-         "Tạo transaction và điều khiển stimulus."],
+            <h3>1. UVM là gì?</h3>
 
-        ["Scoreboard và checking",
-         "So sánh expected/actual và báo lỗi."]
+            <p>
+                UVM là Universal Verification Methodology,
+                một phương pháp chuẩn hóa để xây dựng testbench
+                verification bằng SystemVerilog.
+            </p>
+
+            <h3>2. Transaction</h3>
+
+            <p>
+                Transaction là đối tượng dữ liệu đại diện cho một giao dịch
+                cần gửi đến DUT, ví dụ một lệnh đọc hoặc ghi.
+            </p>
+
+            <h3>3. Driver</h3>
+
+            <p>
+                Driver nhận transaction và chuyển đổi thành tín hiệu
+                vật lý trên các cổng DUT.
+            </p>
+
+            <h3>4. Monitor</h3>
+
+            <p>
+                Monitor quan sát tín hiệu DUT và chuyển chúng thành
+                transaction để các thành phần khác xử lý.
+            </p>
+
+            <h3>5. Agent</h3>
+
+            <p>
+                Agent thường bao gồm sequencer, driver và monitor.
+            </p>
+
+            <h3>6. Environment và Test</h3>
+
+            <p>
+                Environment chứa các agent, scoreboard và coverage.
+                Test cấu hình environment và khởi chạy sequence.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Thành phần nào chuyển transaction thành tín hiệu DUT?",
+            options: ["Monitor", "Driver", "Scoreboard", "Coverage"],
+            correct: 1,
+            explanation: "Driver chuyển transaction thành tín hiệu thực tế."
+        },
+        essay: "Trình bày các thành phần chính trong một UVM testbench và vai trò của từng thành phần.",
+        hint: "Trình bày theo luồng: sequence → sequencer → driver → DUT → monitor.",
+        answer: "Sequence tạo transaction. Sequencer điều phối transaction. Driver chuyển transaction thành tín hiệu DUT. Monitor quan sát tín hiệu. Agent nhóm driver, monitor, sequencer. Environment chứa agent, scoreboard và coverage. Test cấu hình và khởi chạy toàn bộ."
+    },
+
+    {
+        title: "Sequence và Sequencer",
+        description: "Tạo transaction và điều khiển thứ tự stimulus.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Sequence</h3>
+
+            <p>
+                Sequence tạo ra các transaction theo một kịch bản kiểm thử.
+                Ví dụ sequence tạo các lệnh đọc, ghi hoặc reset.
+            </p>
+
+            <h3>2. Sequencer</h3>
+
+            <p>
+                Sequencer nhận transaction từ sequence
+                và cung cấp cho driver theo cơ chế điều phối.
+            </p>
+
+            <h3>3. Luồng hoạt động</h3>
+
+            <div class="formula">
+                Sequence
+                    ↓
+                Sequencer
+                    ↓
+                Driver
+                    ↓
+                DUT
+            </div>
+
+            <h3>4. Randomization</h3>
+
+            <p>
+                SystemVerilog cho phép randomize transaction
+                để tạo nhiều trường hợp kiểm thử khác nhau.
+            </p>
+
+            <h3>5. Constraint</h3>
+
+            <p>
+                Constraint giới hạn miền giá trị random,
+                giúp tạo dữ liệu hợp lệ hoặc tập trung vào trường hợp đặc biệt.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Sequence có nhiệm vụ chính gì?",
+            options: [
+                "Quan sát waveform",
+                "Tạo transaction",
+                "Tổng hợp RTL",
+                "Cấp nguồn cho DUT"
+            ],
+            correct: 1,
+            explanation: "Sequence tạo các transaction theo kịch bản kiểm thử."
+        },
+        essay: "Giải thích mối quan hệ giữa sequence, sequencer và driver trong UVM.",
+        hint: "Sequence tạo dữ liệu, sequencer điều phối, driver lái tín hiệu.",
+        answer: "Sequence tạo transaction. Sequencer nhận và điều phối transaction. Driver lấy transaction từ sequencer rồi chuyển thành tín hiệu phù hợp với giao thức của DUT."
+    },
+
+    {
+        title: "Monitor và Scoreboard",
+        description: "Thu thập dữ liệu và so sánh expected với actual.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Monitor</h3>
+
+            <p>
+                Monitor hoạt động ở chế độ quan sát.
+                Nó không điều khiển DUT mà chỉ lấy các tín hiệu
+                và chuyển thành transaction.
+            </p>
+
+            <h3>2. Expected và Actual</h3>
+
+            <ul>
+                <li>Expected: kết quả mong đợi từ mô hình tham chiếu.</li>
+                <li>Actual: kết quả thực tế lấy từ DUT.</li>
+            </ul>
+
+            <h3>3. Scoreboard</h3>
+
+            <p>
+                Scoreboard nhận expected và actual,
+                sau đó so sánh để phát hiện sai lệch.
+            </p>
+
+            <div class="formula">
+                if (expected == actual)
+                    PASS;
+                else
+                    FAIL;
+            </div>
+
+            <h3>4. Reference model</h3>
+
+            <p>
+                Reference model là mô hình phần mềm hoặc mô hình trừu tượng
+                dùng để tạo kết quả mong đợi.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Scoreboard dùng để làm gì?",
+            options: [
+                "Tạo clock",
+                "So sánh expected và actual",
+                "Biên dịch Verilog",
+                "Tạo giao diện đồ họa"
+            ],
+            correct: 1,
+            explanation: "Scoreboard so sánh kết quả mong đợi với kết quả thực tế."
+        },
+        essay: "Giải thích vai trò của monitor, reference model và scoreboard.",
+        hint: "Monitor lấy actual; reference model tạo expected; scoreboard so sánh.",
+        answer: "Monitor quan sát DUT và tạo transaction actual. Reference model tạo transaction expected. Scoreboard nhận hai loại dữ liệu và so sánh để xác định DUT đúng hay sai."
+    },
+
+    {
+        title: "Quy trình xây dựng UVM Testbench",
+        description: "Từ transaction đến test, report và coverage.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Xác định giao thức</h3>
+
+            <p>
+                Trước khi viết UVM, cần hiểu giao thức DUT:
+                tín hiệu nào là input, output, clock, reset,
+                valid, ready và điều kiện truyền dữ liệu.
+            </p>
+
+            <h3>2. Tạo transaction</h3>
+
+            <p>
+                Transaction phải chứa các trường dữ liệu cần thiết
+                cho một giao dịch.
+            </p>
+
+            <h3>3. Viết driver và monitor</h3>
+
+            <p>
+                Driver chuyển transaction thành tín hiệu.
+                Monitor quan sát và tái tạo transaction từ tín hiệu.
+            </p>
+
+            <h3>4. Tạo scoreboard</h3>
+
+            <p>
+                Scoreboard so sánh dữ liệu thực tế với dữ liệu tham chiếu.
+            </p>
+
+            <h3>5. Tạo test và sequence</h3>
+
+            <p>
+                Test khởi tạo environment, chạy sequence,
+                theo dõi kết quả và tạo báo cáo.
+            </p>
+
+            <h3>6. Đánh giá coverage</h3>
+
+            <p>
+                Nếu coverage chưa đạt mục tiêu, cần bổ sung test case
+                hoặc constraint để kiểm tra các trường hợp còn thiếu.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Nếu coverage chưa đạt mục tiêu, nên làm gì?",
+            options: [
+                "Xóa testbench",
+                "Bổ sung test case phù hợp",
+                "Tắt scoreboard",
+                "Bỏ qua kết quả"
+            ],
+            correct: 1,
+            explanation: "Cần bổ sung test case hoặc điều chỉnh stimulus để bao phủ phần còn thiếu."
+        },
+        essay: "Trình bày quy trình xây dựng một UVM testbench từ đầu đến khi đánh giá coverage.",
+        hint: "Đi theo thứ tự giao thức → transaction → driver/monitor → scoreboard → test → coverage.",
+        answer: "Đầu tiên phân tích giao thức DUT. Sau đó tạo transaction, sequence, sequencer, driver và monitor. Tiếp theo xây dựng agent, environment, scoreboard và test. Cuối cùng chạy mô phỏng, phân tích lỗi và đánh giá coverage."
+    }
+
     ]
 },
 
@@ -696,17 +1783,266 @@ const modules = [
     name: "Project thực tế",
     color: "#f15c78",
     lessons: [
-        ["Thiết kế mạch đếm đồng bộ",
-         "Xác định yêu cầu, FSM, RTL và mô phỏng."],
 
-        ["Thiết kế bộ điều khiển FSM",
-         "Từ sơ đồ trạng thái đến code synthesizable."],
+    {
+        title: "Thiết kế mạch đếm đồng bộ",
+        description: "Phân tích yêu cầu, trạng thái, RTL và mô phỏng.",
+        content: `
+        <div class="lesson-content">
 
-        ["Verification plan",
-         "Xây dựng test case, assertion và coverage."],
+            <h3>1. Yêu cầu thiết kế</h3>
 
-        ["Báo cáo project",
-         "Mô tả thiết kế, waveform, kết quả và hướng phát triển."]
+            <p>
+                Mạch đếm đồng bộ có thể có các tín hiệu:
+                clk, reset, enable và output count.
+            </p>
+
+            <h3>2. Nguyên lý</h3>
+
+            <ul>
+                <li>reset = 1: đưa bộ đếm về 0.</li>
+                <li>reset = 0 và enable = 0: giữ nguyên giá trị.</li>
+                <li>reset = 0 và enable = 1: tăng bộ đếm tại cạnh clock.</li>
+            </ul>
+
+            <h3>3. Code RTL mẫu</h3>
+
+            <div class="formula">
+                always_ff @(posedge clk) begin
+                    if (reset)
+                        count <= 0;
+                    else if (enable)
+                        count <= count + 1;
+                end
+            </div>
+
+            <h3>4. Verification</h3>
+
+            <ul>
+                <li>Kiểm tra reset.</li>
+                <li>Kiểm tra enable.</li>
+                <li>Kiểm tra đếm tăng.</li>
+                <li>Kiểm tra tràn số.</li>
+                <li>Kiểm tra giữ trạng thái.</li>
+            </ul>
+
+        </div>
+        `,
+        quiz: {
+            question: "Trong bộ đếm đồng bộ, khi nào bộ đếm cập nhật?",
+            options: [
+                "Bất kỳ lúc nào input đổi",
+                "Tại cạnh clock phù hợp",
+                "Chỉ khi tắt nguồn",
+                "Chỉ khi output đổi"
+            ],
+            correct: 1,
+            explanation: "Bộ đếm đồng bộ cập nhật theo cạnh clock."
+        },
+        essay: "Trình bày quy trình thiết kế và kiểm thử một mạch đếm đồng bộ có reset và enable.",
+        hint: "Nêu yêu cầu, trạng thái, code RTL, testbench và các trường hợp kiểm thử.",
+        answer: "Cần xác định tín hiệu clk, reset, enable và count. Reset đưa count về 0. Enable cho phép tăng count tại cạnh clock. Sau đó viết RTL, tạo testbench và kiểm tra reset, enable, đếm tăng, giữ trạng thái và tràn số."
+    },
+
+    {
+        title: "Thiết kế FSM Moore và Mealy",
+        description: "Trạng thái, chuyển trạng thái, output và mã hóa.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. FSM là gì?</h3>
+
+            <p>
+                Finite State Machine là mô hình máy trạng thái hữu hạn.
+                FSM gồm tập trạng thái, đầu vào, chuyển trạng thái
+                và đầu ra.
+            </p>
+
+            <h3>2. Moore</h3>
+
+            <p>
+                Với FSM Moore, output chỉ phụ thuộc trạng thái hiện tại.
+            </p>
+
+            <div class="formula">
+                Output = f(Current State)
+            </div>
+
+            <h3>3. Mealy</h3>
+
+            <p>
+                Với FSM Mealy, output phụ thuộc trạng thái hiện tại
+                và đầu vào hiện tại.
+            </p>
+
+            <div class="formula">
+                Output = f(Current State, Input)
+            </div>
+
+            <h3>4. Quy trình thiết kế</h3>
+
+            <ol>
+                <li>Đọc yêu cầu bài toán.</li>
+                <li>Xác định các trạng thái.</li>
+                <li>Vẽ sơ đồ trạng thái.</li>
+                <li>Lập bảng chuyển trạng thái.</li>
+                <li>Mã hóa trạng thái bằng bit.</li>
+                <li>Viết logic next-state.</li>
+                <li>Viết logic output.</li>
+                <li>Kiểm tra bằng waveform.</li>
+            </ol>
+
+            <h3>5. Lưu ý</h3>
+
+            <p>
+                Không nên nhầm dấu cộng trong biểu thức Boolean với
+                phép cộng số học. Trong Boolean, dấu + thường biểu diễn OR.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Trong FSM Moore, output phụ thuộc vào gì?",
+            options: [
+                "Chỉ input",
+                "Chỉ trạng thái hiện tại",
+                "Trạng thái và input",
+                "Clock בלבד"
+            ],
+            correct: 1,
+            explanation: "Moore có output phụ thuộc vào trạng thái hiện tại."
+        },
+        essay: "So sánh FSM Moore và Mealy. Trình bày các bước thiết kế FSM từ yêu cầu đến code RTL.",
+        hint: "Moore: output theo state. Mealy: output theo state và input.",
+        answer: "FSM Moore có output chỉ phụ thuộc trạng thái hiện tại. FSM Mealy có output phụ thuộc trạng thái hiện tại và input. Quy trình gồm xác định trạng thái, vẽ sơ đồ, lập bảng chuyển, mã hóa, viết next-state, output và kiểm tra waveform."
+    },
+
+    {
+        title: "Xây dựng Verification Plan",
+        description: "Test case, expected result, assertion và coverage.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Verification Plan</h3>
+
+            <p>
+                Verification Plan là tài liệu xác định các chức năng
+                cần kiểm tra, phương pháp kiểm tra và tiêu chí đạt.
+            </p>
+
+            <h3>2. Test case</h3>
+
+            <p>
+                Mỗi test case nên có mục tiêu, stimulus,
+                expected result và điều kiện pass/fail.
+            </p>
+
+            <h3>3. Ví dụ test case cho bộ đếm</h3>
+
+            <ul>
+                <li>TC01: kiểm tra reset.</li>
+                <li>TC02: enable bằng 0 thì giữ nguyên.</li>
+                <li>TC03: enable bằng 1 thì đếm tăng.</li>
+                <li>TC04: kiểm tra giá trị lớn nhất.</li>
+                <li>TC05: kiểm tra tràn về 0.</li>
+            </ul>
+
+            <h3>4. Assertion</h3>
+
+            <p>
+                Assertion giúp phát hiện tự động các điều kiện không hợp lệ,
+                ví dụ count không được thay đổi khi enable bằng 0.
+            </p>
+
+            <h3>5. Coverage</h3>
+
+            <p>
+                Coverage cần bao phủ các trạng thái,
+                các chuyển trạng thái, các giá trị đầu vào
+                và các trường hợp biên.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Một test case tốt cần có thành phần nào?",
+            options: [
+                "Chỉ stimulus",
+                "Chỉ waveform",
+                "Mục tiêu, stimulus, expected và pass/fail",
+                "Chỉ code RTL"
+            ],
+            correct: 2,
+            explanation: "Test case cần mục tiêu, stimulus, expected result và tiêu chí đánh giá."
+        },
+        essay: "Lập verification plan cho mạch đếm đồng bộ có reset và enable.",
+        hint: "Đưa ra ít nhất 5 test case và expected result của từng case.",
+        answer: "Verification plan cần kiểm tra reset, giữ trạng thái khi enable=0, đếm tăng khi enable=1, giá trị lớn nhất và tràn số. Mỗi test case phải có mục tiêu, stimulus, expected result và tiêu chí pass/fail."
+    },
+
+    {
+        title: "Viết báo cáo và trình bày project",
+        description: "Cấu trúc báo cáo, waveform, kết quả và hướng phát triển.",
+        content: `
+        <div class="lesson-content">
+
+            <h3>1. Cấu trúc báo cáo</h3>
+
+            <ol>
+                <li>Trang bìa.</li>
+                <li>Mục tiêu project.</li>
+                <li>Yêu cầu thiết kế.</li>
+                <li>Cơ sở lý thuyết.</li>
+                <li>Sơ đồ khối.</li>
+                <li>Thiết kế chi tiết.</li>
+                <li>Code RTL.</li>
+                <li>Testbench.</li>
+                <li>Kết quả mô phỏng.</li>
+                <li>Nhận xét và kết luận.</li>
+                <li>Hướng phát triển.</li>
+            </ol>
+
+            <h3>2. Phân tích waveform</h3>
+
+            <p>
+                Khi trình bày waveform, cần chỉ rõ:
+                thời điểm reset, cạnh clock, giá trị input,
+                output và lý do output thay đổi.
+            </p>
+
+            <h3>3. Nhận xét kết quả</h3>
+
+            <p>
+                Không chỉ chụp waveform. Cần giải thích
+                waveform chứng minh chức năng nào đúng,
+                có trường hợp nào chưa kiểm tra và vì sao.
+            </p>
+
+            <h3>4. Kết luận</h3>
+
+            <p>
+                Kết luận nên nêu mức độ hoàn thành yêu cầu,
+                kiến thức đã áp dụng và hướng phát triển tiếp theo.
+            </p>
+
+        </div>
+        `,
+        quiz: {
+            question: "Khi phân tích waveform, cần làm gì?",
+            options: [
+                "Chỉ chụp hình",
+                "Giải thích quan hệ giữa input, clock và output",
+                "Xóa các tín hiệu",
+                "Không cần ghi thời gian"
+            ],
+            correct: 1,
+            explanation: "Waveform cần được giải thích dựa trên input, clock, output và thời điểm thay đổi."
+        },
+        essay: "Trình bày cấu trúc một báo cáo project thiết kế mạch số và cách phân tích waveform.",
+        hint: "Nêu các chương chính và cách chứng minh kết quả mô phỏng.",
+        answer: "Báo cáo gồm mục tiêu, yêu cầu, lý thuyết, sơ đồ, thiết kế, RTL, testbench, waveform, nhận xét, kết luận và hướng phát triển. Khi phân tích waveform cần giải thích clock, reset, input, output và chứng minh chức năng đúng."
+    }
+
     ]
 }
 
@@ -853,8 +2189,8 @@ function renderLesson() {
     get("lessonNumber").textContent =
         "Bài " + (lessonIndex + 1);
 
-    get("lessonTitle").textContent = lesson[0];
-    get("lessonDescription").textContent = lesson[1];
+    get("lessonTitle").textContent = lesson.title;
+    get("lessonDescription").textContent = lesson.description;
 
     get("modulePercent").textContent =
         modulePercent + "%";
@@ -874,11 +2210,51 @@ function renderLesson() {
         moduleIndex === modules.length - 1 &&
         lessonIndex === module.lessons.length - 1;
 
+    renderLessonList();
     renderTabs();
     renderContent();
     renderQuiz();
     renderEssay();
     renderNotes();
+}
+
+function renderLessonList() {
+
+    const module = modules[moduleIndex];
+
+    get("lessonList").innerHTML =
+        module.lessons.map((lesson, index) => {
+
+            const key = moduleIndex + "-" + index;
+
+            return `
+                <button
+                    class="lesson-button
+                    ${index === lessonIndex ? "active" : ""}
+                    ${completed.has(key) ? "done" : ""}"
+                    data-lesson="${index}">
+
+                    <b>${index + 1}. ${lesson.title}</b>
+
+                    <div class="muted">
+                        ${completed.has(key)
+                            ? "✓ Đã hoàn thành"
+                            : "Chưa hoàn thành"}
+                    </div>
+
+                </button>
+            `;
+
+        }).join("");
+
+    document.querySelectorAll("[data-lesson]").forEach(button => {
+
+        button.onclick = () => {
+            lessonIndex = Number(button.dataset.lesson);
+            renderLesson();
+        };
+
+    });
 }
 
 function renderTabs() {
@@ -900,70 +2276,37 @@ function renderTabs() {
 
 function renderContent() {
 
-    const lessonTitle =
-        modules[moduleIndex].lessons[lessonIndex][0];
+    const lesson =
+        modules[moduleIndex].lessons[lessonIndex];
 
-    get("contentTab").innerHTML = `
-        <div class="question">
-            <h3>Mục tiêu bài học</h3>
-
-            <p>
-                Nắm được khái niệm
-                <b>${lessonTitle}</b>,
-                biết quy trình phân tích
-                và liên hệ với project thực tế.
-            </p>
-
-            <ul>
-                <li>Hiểu bản chất của chủ đề.</li>
-                <li>Biết trình bày các bước xử lý.</li>
-                <li>Biết kiểm chứng kết quả.</li>
-                <li>Biết liên hệ với mạch hoặc code.</li>
-            </ul>
-        </div>
-
-        <div class="question">
-            <h3>Checklist học tập</h3>
-
-            <p>
-                ☐ Đọc lý thuyết<br>
-                ☐ Tự vẽ sơ đồ hoặc bảng<br>
-                ☐ Làm câu trắc nghiệm<br>
-                ☐ Trả lời câu tự luận<br>
-                ☐ Đánh dấu hoàn thành
-            </p>
-        </div>
-    `;
+    get("contentTab").innerHTML =
+        lesson.content;
 }
 
 function renderQuiz() {
 
+    const lesson =
+        modules[moduleIndex].lessons[lessonIndex];
+
+    const quiz = lesson.quiz;
+
     get("quizTab").innerHTML = `
         <div class="question">
 
-            <h3>
-                Câu 1. Khi phân tích một mạch số,
-                nên làm gì trước?
-            </h3>
+            <span class="badge">Trắc nghiệm</span>
 
-            <label>
-                <input type="radio" name="quizAnswer" value="correct">
-                Xác định đầu vào và đầu ra
-            </label>
+            <h3>${quiz.question}</h3>
 
-            <br>
-
-            <label>
-                <input type="radio" name="quizAnswer" value="wrong">
-                Viết code ngay
-            </label>
-
-            <br>
-
-            <label>
-                <input type="radio" name="quizAnswer" value="wrong">
-                Chạy mô phỏng ngay
-            </label>
+            ${quiz.options.map((option, index) => `
+                <label>
+                    <input
+                        type="radio"
+                        name="quizAnswer"
+                        value="${index}">
+                    ${option}
+                </label>
+                <br>
+            `).join("")}
 
             <div class="actions">
                 <button class="btn primary" id="checkQuiz">
@@ -991,44 +2334,40 @@ function renderQuiz() {
             return;
         }
 
-        if (selected.value === "correct") {
+        if (Number(selected.value) === quiz.correct) {
             get("quizResult").innerHTML =
                 `<div class="answer">
-                    ✓ Chính xác. Cần xác định đầu vào
-                    và đầu ra trước.
+                    ✓ Chính xác! ${quiz.explanation}
                 </div>`;
         } else {
             get("quizResult").innerHTML =
-                `<div class="hint">
-                    Chưa đúng. Hãy xác định đầu vào
-                    và đầu ra trước.
+                `<div class="error">
+                    Chưa đúng. Hãy đọc lại bài giảng và thử lại.
                 </div>`;
         }
+
     };
 }
 
 function renderEssay() {
 
-    const title =
-        modules[moduleIndex].lessons[lessonIndex][0];
+    const lesson =
+        modules[moduleIndex].lessons[lessonIndex];
 
     get("essayTab").innerHTML = `
         <div class="question">
 
+            <span class="badge">Tự luận</span>
+
             <h3>Câu hỏi tự luận</h3>
 
-            <p>
-                Hãy trình bày khái niệm,
-                đặc điểm, quy trình phân tích
-                và ví dụ về:
-                <b>${title}</b>.
-            </p>
+            <p>${lesson.essay}</p>
 
             <textarea
                 id="essayInput"
                 class="field"
-                rows="9"
-                maxlength="5000"
+                rows="10"
+                maxlength="10000"
                 placeholder="Nhập câu trả lời của bạn..."
             >${essays[currentKey()] || ""}</textarea>
 
@@ -1038,7 +2377,7 @@ function renderEssay() {
                     ▣ Lưu câu trả lời
                 </button>
 
-                <button class="btn" id="showHint">
+                <button class="btn orange" id="showHint">
                     💡 Xem gợi ý
                 </button>
 
@@ -1070,9 +2409,7 @@ function renderEssay() {
 
         get("essayResult").innerHTML =
             `<div class="hint">
-                Gợi ý trình bày:
-                định nghĩa → đặc điểm →
-                quy trình → ví dụ → kết luận.
+                ${lesson.hint}
             </div>`;
     };
 
@@ -1080,11 +2417,7 @@ function renderEssay() {
 
         get("essayResult").innerHTML =
             `<div class="answer">
-                Đáp án tham khảo:
-                cần giải thích đúng bản chất,
-                nêu các bước chính,
-                đưa ví dụ minh họa
-                và liên hệ ứng dụng thực tế.
+                ${lesson.answer}
             </div>`;
     };
 }
@@ -1094,21 +2427,22 @@ function renderNotes() {
     get("notesTab").innerHTML = `
         <div class="question">
 
+            <span class="badge">Ghi chú</span>
+
             <h3>Ghi chú cá nhân</h3>
 
             <textarea
                 id="noteInput"
                 class="field"
-                rows="8"
-                placeholder="Ghi công thức,
-ý tưởng hoặc phần chưa hiểu..."
+                rows="9"
+                placeholder="Ghi công thức, ý tưởng,
+phần chưa hiểu hoặc nội dung cần ôn..."
             >${notes[currentKey()] || ""}</textarea>
 
             <button
                 class="btn primary"
                 id="saveNote"
-                style="margin-top:10px"
-            >
+                style="margin-top:10px">
                 ▣ Lưu ghi chú
             </button>
 
@@ -1145,7 +2479,7 @@ function renderProgress() {
             );
 
             return `
-                <div style="margin:18px 0">
+                <div style="margin:20px 0">
 
                     <b>${module.name}</b>
 
@@ -1188,7 +2522,7 @@ function renderAllNotes() {
         const lesson = Number(parts[1]);
 
         const title =
-            modules[module].lessons[lesson][0];
+            modules[module].lessons[lesson].title;
 
         const safeText = notes[key]
             .replace(/&/g, "&amp;")
@@ -1228,6 +2562,7 @@ document.querySelectorAll("[data-page]").forEach(button => {
         if (page === "notes") {
             renderAllNotes();
         }
+
     };
 
 });
@@ -1242,6 +2577,7 @@ document.querySelectorAll("[data-module]").forEach(button => {
         lessonIndex = 0;
 
         openCourse();
+
     };
 
 });
@@ -1253,6 +2589,7 @@ document.querySelectorAll("[data-tab]").forEach(button => {
         currentTab = button.dataset.tab;
 
         renderTabs();
+
     };
 
 });
@@ -1267,6 +2604,7 @@ get("completeButton").onclick = () => {
 
     renderLesson();
     updateDashboard();
+
 };
 
 get("previousButton").onclick = () => {
@@ -1280,6 +2618,7 @@ get("previousButton").onclick = () => {
     }
 
     renderLesson();
+
 };
 
 get("nextButton").onclick = () => {
@@ -1295,6 +2634,7 @@ get("nextButton").onclick = () => {
     }
 
     renderLesson();
+
 };
 
 get("continueButton").onclick = () => {
@@ -1318,7 +2658,13 @@ get("search").oninput = event => {
                 modules[i].lessons[j];
 
             const text =
-                (lesson[0] + " " + lesson[1]).toLowerCase();
+                (
+                    lesson.title +
+                    " " +
+                    lesson.description +
+                    " " +
+                    lesson.content
+                ).toLowerCase();
 
             if (text.includes(keyword)) {
 
