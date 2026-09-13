@@ -1,0 +1,1343 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DV Learning Hub</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #10243f;
+    --blue: #2376e8;
+    --background: #eef3f9;
+    --text: #172b4d;
+    --muted: #6d819b;
+    --border: #dbe5f0;
+    --green: #35bd91;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: var(--navy);
+    color: white;
+    padding: 24px 16px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.subtitle {
+    color: #a9bfdc;
+    font-size: 12px;
+    margin-top: 7px;
+    margin-bottom: 28px;
+}
+
+.nav-title {
+    color: #8fa9ca;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 22px 0 8px;
+}
+
+.nav button {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: #dce8f8;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 3px 0;
+}
+
+.nav button:hover,
+.nav button.active {
+    background: var(--blue);
+    color: white;
+}
+
+.main {
+    padding: 26px;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.topbar h1 {
+    margin: 4px 0 0;
+    font-size: 28px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.search {
+    width: min(420px, 100%);
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: white;
+}
+
+.hero {
+    background: linear-gradient(120deg, #17385f, #287bd0);
+    color: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin: 22px 0;
+}
+
+.hero h2 {
+    font-size: 29px;
+    margin: 12px 0;
+}
+
+.hero p {
+    color: #dceaff;
+    line-height: 1.6;
+}
+
+.btn {
+    border: 1px solid #ccdbea;
+    background: white;
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    opacity: 0.88;
+}
+
+.btn.primary {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+}
+
+.btn.green {
+    background: #d9f7e9;
+    color: #08734e;
+    border-color: #a5e8ca;
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 19px;
+    box-shadow: 0 4px 16px #10243f0c;
+}
+
+.stat strong {
+    display: block;
+    font-size: 29px;
+    margin-top: 8px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 16px;
+}
+
+.modules {
+    display: grid;
+    gap: 10px;
+}
+
+.module {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 14px;
+    text-align: left;
+}
+
+.module:hover {
+    border-color: var(--blue);
+}
+
+.module-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: bold;
+    flex: none;
+}
+
+.progress {
+    height: 7px;
+    background: #e5edf5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    background: var(--green);
+    border-radius: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.course-header h2 {
+    margin: 7px 0;
+    font-size: 27px;
+}
+
+.tabs {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    margin: 20px 0;
+}
+
+.tab {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 12px 14px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+    font-weight: bold;
+}
+
+.question {
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 16px;
+    margin: 12px 0;
+    line-height: 1.65;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cddbea;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.hint,
+.answer {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.hint {
+    background: #fff4d5;
+    color: #73570b;
+}
+
+.answer {
+    background: #e0f7ec;
+    color: #126348;
+}
+
+.lesson-list {
+    display: grid;
+    gap: 8px;
+}
+
+.lesson-button {
+    width: 100%;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px;
+    text-align: left;
+}
+
+.lesson-button.active {
+    background: #e9f2ff;
+    border-color: var(--blue);
+    color: #1458b4;
+}
+
+@media (max-width: 850px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 16px;
+    }
+
+    .nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .main {
+        padding: 14px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .nav {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+    <div class="logo">▣ DV Learning Hub</div>
+    <div class="subtitle">Digital Design & Verification</div>
+
+    <div class="nav-title">Điều hướng</div>
+
+    <div class="nav">
+        <button class="active" data-page="home">⌂ Trang chủ</button>
+        <button data-page="course">▣ Khóa học</button>
+        <button data-page="progress">◔ Tiến độ</button>
+        <button data-page="notes">✎ Ghi chú</button>
+        <button data-page="project">▤ Project cuối khóa</button>
+    </div>
+
+    <div class="nav-title">Module</div>
+
+    <div class="nav">
+        <button data-module="0">🟢 Digital Logic</button>
+        <button data-module="1">🔵 Verilog HDL</button>
+        <button data-module="2">🟣 SystemVerilog</button>
+        <button data-module="3">🟠 UVM</button>
+        <button data-module="4">🔴 Project thực tế</button>
+    </div>
+
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+    <div>
+        <div class="muted">Xin chào, học viên 👋</div>
+        <h1>Khu vực học tập</h1>
+    </div>
+
+    <input
+        id="search"
+        class="search"
+        placeholder="Tìm bài học..."
+    >
+</div>
+
+<!-- TRANG CHỦ -->
+
+<section id="home">
+
+    <div class="hero">
+        <div>DV LEARNING HUB</div>
+
+        <h2>Học Digital Design từ cơ bản đến thực tế</h2>
+
+        <p>
+            Lý thuyết · Trắc nghiệm · Tự luận · Ghi chú ·
+            Verilog · SystemVerilog · UVM · Project
+        </p>
+
+        <button class="btn" id="continueButton">
+            Tiếp tục học →
+        </button>
+    </div>
+
+    <div class="stats">
+
+        <div class="card stat">
+            <span class="muted">Bài đã hoàn thành</span>
+            <strong id="doneCount">0</strong>
+        </div>
+
+        <div class="card stat">
+            <span class="muted">Câu tự luận đã lưu</span>
+            <strong id="essayCount">0</strong>
+        </div>
+
+        <div class="card stat">
+            <span class="muted">Tiến độ tổng</span>
+            <strong id="totalPercent">0%</strong>
+        </div>
+
+    </div>
+
+    <div class="layout">
+
+        <div class="card">
+            <h2>Danh sách module</h2>
+            <div id="moduleList" class="modules"></div>
+        </div>
+
+        <div class="card">
+            <h2>Tiến độ tổng</h2>
+            <p id="overallText" class="muted">0% hoàn thành</p>
+
+            <div class="progress">
+                <span id="overallBar" style="width: 0%"></span>
+            </div>
+
+            <p class="muted">
+                Chọn module để bắt đầu học.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- KHÓA HỌC -->
+
+<section id="course" class="hidden">
+
+<div class="card">
+
+    <div class="muted">
+        Khóa học / <span id="moduleName"></span>
+    </div>
+
+    <div class="course-header">
+
+        <div>
+            <div class="muted" id="lessonNumber"></div>
+            <h2 id="lessonTitle"></h2>
+            <p id="lessonDescription" class="muted"></p>
+        </div>
+
+        <button class="btn green" id="completeButton">
+            ✓ Đánh dấu đã làm
+        </button>
+
+    </div>
+
+    <div style="display:flex;justify-content:space-between;margin:12px 0 6px;font-size:13px">
+        <span>Tiến độ module</span>
+        <b id="modulePercent">0%</b>
+    </div>
+
+    <div class="progress">
+        <span id="moduleBar" style="width:0%"></span>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="content">▤ Nội dung</button>
+        <button class="tab" data-tab="quiz">☑ Trắc nghiệm</button>
+        <button class="tab" data-tab="essay">✎ Tự luận</button>
+        <button class="tab" data-tab="notes">▧ Ghi chú</button>
+    </div>
+
+    <div id="contentTab"></div>
+    <div id="quizTab" class="hidden"></div>
+    <div id="essayTab" class="hidden"></div>
+    <div id="notesTab" class="hidden"></div>
+
+    <div style="display:flex;justify-content:space-between;margin-top:15px">
+        <button class="btn" id="previousButton">← Bài trước</button>
+        <button class="btn primary" id="nextButton">Bài tiếp theo →</button>
+    </div>
+
+</div>
+
+</section>
+
+<!-- TIẾN ĐỘ -->
+
+<section id="progress" class="hidden">
+
+<div class="card">
+    <h2>Tiến độ học tập</h2>
+    <div id="progressList"></div>
+</div>
+
+</section>
+
+<!-- GHI CHÚ -->
+
+<section id="notes" class="hidden">
+
+<div class="card">
+    <h2>Ghi chú cá nhân</h2>
+    <div id="allNotes"></div>
+</div>
+
+</section>
+
+<!-- PROJECT -->
+
+<section id="project" class="hidden">
+
+<div class="card">
+
+    <h2>Project cuối khóa</h2>
+
+    <div class="question">
+        <h3>1. Mạch đếm đồng bộ</h3>
+        <p>
+            Thiết kế bộ đếm đồng bộ có reset, enable,
+            hiển thị trạng thái và mô phỏng waveform.
+        </p>
+    </div>
+
+    <div class="question">
+        <h3>2. Bộ điều khiển FSM</h3>
+        <p>
+            Thiết kế FSM Moore hoặc Mealy từ sơ đồ trạng thái
+            đến code RTL.
+        </p>
+    </div>
+
+    <div class="question">
+        <h3>3. Verification bằng SystemVerilog/UVM</h3>
+        <p>
+            Viết testbench, assertion, coverage,
+            driver, monitor và scoreboard.
+        </p>
+    </div>
+
+    <div class="question">
+        <h3>4. CPU RISC-V đơn giản</h3>
+        <p>
+            Xây dựng datapath, control unit
+            và mô phỏng các lệnh cơ bản.
+        </p>
+    </div>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+
+const modules = [
+
+{
+    name: "Digital Logic",
+    color: "#32bd91",
+    lessons: [
+        ["Cổng logic và biểu thức Boolean",
+         "AND, OR, NOT, NAND, NOR, XOR, XNOR và biểu thức Boolean."],
+
+        ["Bảng chân trị và Karnaugh",
+         "Lập bảng chân trị và rút gọn hàm logic bằng Karnaugh."],
+
+        ["Mạch tổ hợp cơ bản",
+         "Adder, subtractor, comparator, encoder, decoder và multiplexer."],
+
+        ["Mạch tuần tự",
+         "Latch, flip-flop, thanh ghi và bộ đếm."],
+
+        ["FSM Moore và Mealy",
+         "Phân tích trạng thái, bảng chuyển trạng thái và ngõ ra."]
+    ]
+},
+
+{
+    name: "Verilog HDL",
+    color: "#4ca5f5",
+    lessons: [
+        ["Cú pháp Verilog cơ bản",
+         "Module, port, wire, reg, assign và always block."],
+
+        ["Mạch tổ hợp bằng Verilog",
+         "Mô tả mạch tổ hợp bằng always @(*)." ],
+
+        ["Mạch tuần tự bằng Verilog",
+         "Clock, reset và non-blocking assignment."],
+
+        ["Testbench Verilog",
+         "Tạo stimulus, clock, reset và quan sát waveform."]
+    ]
+},
+
+{
+    name: "SystemVerilog",
+    color: "#a66bea",
+    lessons: [
+        ["Kiểu dữ liệu SystemVerilog",
+         "logic, bit, enum, struct và array."],
+
+        ["Interface và modport",
+         "Kết nối DUT và testbench có tổ chức."],
+
+        ["Assertion cơ bản",
+         "Immediate assertion và concurrent assertion."],
+
+        ["Coverage",
+         "Code coverage và functional coverage."]
+    ]
+},
+
+{
+    name: "UVM",
+    color: "#f39a35",
+    lessons: [
+        ["Tổng quan UVM",
+         "Sequence, driver, monitor, agent và environment."],
+
+        ["UVM testbench architecture",
+         "Cấu trúc testbench và luồng giao dịch."],
+
+        ["Sequence và sequencer",
+         "Tạo transaction và điều khiển stimulus."],
+
+        ["Scoreboard và checking",
+         "So sánh expected/actual và báo lỗi."]
+    ]
+},
+
+{
+    name: "Project thực tế",
+    color: "#f15c78",
+    lessons: [
+        ["Thiết kế mạch đếm đồng bộ",
+         "Xác định yêu cầu, FSM, RTL và mô phỏng."],
+
+        ["Thiết kế bộ điều khiển FSM",
+         "Từ sơ đồ trạng thái đến code synthesizable."],
+
+        ["Verification plan",
+         "Xây dựng test case, assertion và coverage."],
+
+        ["Báo cáo project",
+         "Mô tả thiết kế, waveform, kết quả và hướng phát triển."]
+    ]
+}
+
+];
+
+let moduleIndex = 0;
+let lessonIndex = 0;
+let currentTab = "content";
+
+const completed = new Set();
+const essays = {};
+const notes = {};
+
+function get(id) {
+    return document.getElementById(id);
+}
+
+function currentKey() {
+    return moduleIndex + "-" + lessonIndex;
+}
+
+function totalLessons() {
+    return modules.reduce(
+        (total, module) => total + module.lessons.length,
+        0
+    );
+}
+
+function totalPercent() {
+    return Math.round(
+        completed.size / totalLessons() * 100
+    );
+}
+
+function showPage(pageName) {
+
+    const pages = [
+        "home",
+        "course",
+        "progress",
+        "notes",
+        "project"
+    ];
+
+    pages.forEach(page => {
+        get(page).classList.toggle(
+            "hidden",
+            page !== pageName
+        );
+    });
+
+    document.querySelectorAll("[data-page]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.page === pageName
+        );
+    });
+}
+
+function updateDashboard() {
+
+    get("doneCount").textContent = completed.size;
+
+    get("essayCount").textContent =
+        Object.values(essays).filter(
+            answer => answer.trim() !== ""
+        ).length;
+
+    get("totalPercent").textContent =
+        totalPercent() + "%";
+
+    get("overallText").textContent =
+        totalPercent() + "% hoàn thành";
+
+    get("overallBar").style.width =
+        totalPercent() + "%";
+
+    get("moduleList").innerHTML = modules.map(
+        (module, index) => {
+
+            const finished = module.lessons.filter(
+                (_, lesson) => completed.has(index + "-" + lesson)
+            ).length;
+
+            const percent = Math.round(
+                finished / module.lessons.length * 100
+            );
+
+            return `
+                <button class="module" data-module-open="${index}">
+                    <span class="module-icon"
+                          style="background:${module.color}">
+                        ${index + 1}
+                    </span>
+
+                    <span style="flex:1">
+                        <b>${module.name}</b>
+
+                        <div class="muted">
+                            ${finished}/${module.lessons.length}
+                            bài hoàn thành
+                        </div>
+
+                        <div class="progress">
+                            <span
+                                style="width:${percent}%;
+                                background:${module.color}">
+                            </span>
+                        </div>
+                    </span>
+                </button>
+            `;
+        }
+    ).join("");
+
+    document.querySelectorAll("[data-module-open]").forEach(button => {
+        button.onclick = () => {
+            moduleIndex = Number(button.dataset.moduleOpen);
+            lessonIndex = 0;
+            openCourse();
+        };
+    });
+}
+
+function openCourse() {
+    showPage("course");
+    renderLesson();
+}
+
+function renderLesson() {
+
+    const module = modules[moduleIndex];
+    const lesson = module.lessons[lessonIndex];
+
+    const finished = module.lessons.filter(
+        (_, index) => completed.has(moduleIndex + "-" + index)
+    ).length;
+
+    const modulePercent = Math.round(
+        finished / module.lessons.length * 100
+    );
+
+    get("moduleName").textContent = module.name;
+    get("lessonNumber").textContent =
+        "Bài " + (lessonIndex + 1);
+
+    get("lessonTitle").textContent = lesson[0];
+    get("lessonDescription").textContent = lesson[1];
+
+    get("modulePercent").textContent =
+        modulePercent + "%";
+
+    get("moduleBar").style.width =
+        modulePercent + "%";
+
+    get("completeButton").textContent =
+        completed.has(currentKey())
+            ? "✓ Đã hoàn thành"
+            : "✓ Đánh dấu đã làm";
+
+    get("previousButton").disabled =
+        moduleIndex === 0 && lessonIndex === 0;
+
+    get("nextButton").disabled =
+        moduleIndex === modules.length - 1 &&
+        lessonIndex === module.lessons.length - 1;
+
+    renderTabs();
+    renderContent();
+    renderQuiz();
+    renderEssay();
+    renderNotes();
+}
+
+function renderTabs() {
+
+    document.querySelectorAll("[data-tab]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.tab === currentTab
+        );
+    });
+
+    ["content", "quiz", "essay", "notes"].forEach(tab => {
+        get(tab + "Tab").classList.toggle(
+            "hidden",
+            tab !== currentTab
+        );
+    });
+}
+
+function renderContent() {
+
+    const lessonTitle =
+        modules[moduleIndex].lessons[lessonIndex][0];
+
+    get("contentTab").innerHTML = `
+        <div class="question">
+            <h3>Mục tiêu bài học</h3>
+
+            <p>
+                Nắm được khái niệm
+                <b>${lessonTitle}</b>,
+                biết quy trình phân tích
+                và liên hệ với project thực tế.
+            </p>
+
+            <ul>
+                <li>Hiểu bản chất của chủ đề.</li>
+                <li>Biết trình bày các bước xử lý.</li>
+                <li>Biết kiểm chứng kết quả.</li>
+                <li>Biết liên hệ với mạch hoặc code.</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h3>Checklist học tập</h3>
+
+            <p>
+                ☐ Đọc lý thuyết<br>
+                ☐ Tự vẽ sơ đồ hoặc bảng<br>
+                ☐ Làm câu trắc nghiệm<br>
+                ☐ Trả lời câu tự luận<br>
+                ☐ Đánh dấu hoàn thành
+            </p>
+        </div>
+    `;
+}
+
+function renderQuiz() {
+
+    get("quizTab").innerHTML = `
+        <div class="question">
+
+            <h3>
+                Câu 1. Khi phân tích một mạch số,
+                nên làm gì trước?
+            </h3>
+
+            <label>
+                <input type="radio" name="quizAnswer" value="correct">
+                Xác định đầu vào và đầu ra
+            </label>
+
+            <br>
+
+            <label>
+                <input type="radio" name="quizAnswer" value="wrong">
+                Viết code ngay
+            </label>
+
+            <br>
+
+            <label>
+                <input type="radio" name="quizAnswer" value="wrong">
+                Chạy mô phỏng ngay
+            </label>
+
+            <div class="actions">
+                <button class="btn primary" id="checkQuiz">
+                    Kiểm tra đáp án
+                </button>
+            </div>
+
+            <div id="quizResult"></div>
+
+        </div>
+    `;
+
+    get("checkQuiz").onclick = () => {
+
+        const selected =
+            document.querySelector(
+                'input[name="quizAnswer"]:checked'
+            );
+
+        if (!selected) {
+            get("quizResult").innerHTML =
+                `<div class="hint">
+                    Hãy chọn một đáp án trước.
+                </div>`;
+            return;
+        }
+
+        if (selected.value === "correct") {
+            get("quizResult").innerHTML =
+                `<div class="answer">
+                    ✓ Chính xác. Cần xác định đầu vào
+                    và đầu ra trước.
+                </div>`;
+        } else {
+            get("quizResult").innerHTML =
+                `<div class="hint">
+                    Chưa đúng. Hãy xác định đầu vào
+                    và đầu ra trước.
+                </div>`;
+        }
+    };
+}
+
+function renderEssay() {
+
+    const title =
+        modules[moduleIndex].lessons[lessonIndex][0];
+
+    get("essayTab").innerHTML = `
+        <div class="question">
+
+            <h3>Câu hỏi tự luận</h3>
+
+            <p>
+                Hãy trình bày khái niệm,
+                đặc điểm, quy trình phân tích
+                và ví dụ về:
+                <b>${title}</b>.
+            </p>
+
+            <textarea
+                id="essayInput"
+                class="field"
+                rows="9"
+                maxlength="5000"
+                placeholder="Nhập câu trả lời của bạn..."
+            >${essays[currentKey()] || ""}</textarea>
+
+            <div class="actions">
+
+                <button class="btn primary" id="saveEssay">
+                    ▣ Lưu câu trả lời
+                </button>
+
+                <button class="btn" id="showHint">
+                    💡 Xem gợi ý
+                </button>
+
+                <button class="btn" id="showAnswer">
+                    ▤ Đáp án tham khảo
+                </button>
+
+            </div>
+
+            <div id="essayResult"></div>
+
+        </div>
+    `;
+
+    get("saveEssay").onclick = () => {
+
+        essays[currentKey()] =
+            get("essayInput").value;
+
+        updateDashboard();
+
+        get("essayResult").innerHTML =
+            `<div class="answer">
+                ✓ Đã lưu câu trả lời trong phiên hiện tại.
+            </div>`;
+    };
+
+    get("showHint").onclick = () => {
+
+        get("essayResult").innerHTML =
+            `<div class="hint">
+                Gợi ý trình bày:
+                định nghĩa → đặc điểm →
+                quy trình → ví dụ → kết luận.
+            </div>`;
+    };
+
+    get("showAnswer").onclick = () => {
+
+        get("essayResult").innerHTML =
+            `<div class="answer">
+                Đáp án tham khảo:
+                cần giải thích đúng bản chất,
+                nêu các bước chính,
+                đưa ví dụ minh họa
+                và liên hệ ứng dụng thực tế.
+            </div>`;
+    };
+}
+
+function renderNotes() {
+
+    get("notesTab").innerHTML = `
+        <div class="question">
+
+            <h3>Ghi chú cá nhân</h3>
+
+            <textarea
+                id="noteInput"
+                class="field"
+                rows="8"
+                placeholder="Ghi công thức,
+ý tưởng hoặc phần chưa hiểu..."
+            >${notes[currentKey()] || ""}</textarea>
+
+            <button
+                class="btn primary"
+                id="saveNote"
+                style="margin-top:10px"
+            >
+                ▣ Lưu ghi chú
+            </button>
+
+            <div id="noteResult"></div>
+
+        </div>
+    `;
+
+    get("saveNote").onclick = () => {
+
+        notes[currentKey()] =
+            get("noteInput").value;
+
+        get("noteResult").innerHTML =
+            `<div class="answer">
+                ✓ Đã lưu ghi chú.
+            </div>`;
+
+        renderAllNotes();
+    };
+}
+
+function renderProgress() {
+
+    get("progressList").innerHTML = modules.map(
+        (module, index) => {
+
+            const finished = module.lessons.filter(
+                (_, lesson) => completed.has(index + "-" + lesson)
+            ).length;
+
+            const percent = Math.round(
+                finished / module.lessons.length * 100
+            );
+
+            return `
+                <div style="margin:18px 0">
+
+                    <b>${module.name}</b>
+
+                    <div class="muted">
+                        ${finished}/${module.lessons.length}
+                        bài hoàn thành
+                    </div>
+
+                    <div class="progress">
+                        <span
+                            style="width:${percent}%;
+                            background:${module.color}">
+                        </span>
+                    </div>
+
+                </div>
+            `;
+        }
+    ).join("");
+}
+
+function renderAllNotes() {
+
+    const keys = Object.keys(notes).filter(
+        key => notes[key].trim() !== ""
+    );
+
+    if (keys.length === 0) {
+        get("allNotes").innerHTML =
+            `<p class="muted">
+                Chưa có ghi chú nào.
+            </p>`;
+        return;
+    }
+
+    get("allNotes").innerHTML = keys.map(key => {
+
+        const parts = key.split("-");
+        const module = Number(parts[0]);
+        const lesson = Number(parts[1]);
+
+        const title =
+            modules[module].lessons[lesson][0];
+
+        const safeText = notes[key]
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        return `
+            <div class="question">
+
+                <b>
+                    ${modules[module].name}
+                    — ${title}
+                </b>
+
+                <p style="white-space:pre-wrap">
+                    ${safeText}
+                </p>
+
+            </div>
+        `;
+
+    }).join("");
+}
+
+document.querySelectorAll("[data-page]").forEach(button => {
+
+    button.onclick = () => {
+
+        const page = button.dataset.page;
+
+        showPage(page);
+
+        if (page === "progress") {
+            renderProgress();
+        }
+
+        if (page === "notes") {
+            renderAllNotes();
+        }
+    };
+
+});
+
+document.querySelectorAll("[data-module]").forEach(button => {
+
+    button.onclick = () => {
+
+        moduleIndex =
+            Number(button.dataset.module);
+
+        lessonIndex = 0;
+
+        openCourse();
+    };
+
+});
+
+document.querySelectorAll("[data-tab]").forEach(button => {
+
+    button.onclick = () => {
+
+        currentTab = button.dataset.tab;
+
+        renderTabs();
+    };
+
+});
+
+get("completeButton").onclick = () => {
+
+    if (completed.has(currentKey())) {
+        completed.delete(currentKey());
+    } else {
+        completed.add(currentKey());
+    }
+
+    renderLesson();
+    updateDashboard();
+};
+
+get("previousButton").onclick = () => {
+
+    if (lessonIndex > 0) {
+        lessonIndex--;
+    } else {
+        moduleIndex--;
+        lessonIndex =
+            modules[moduleIndex].lessons.length - 1;
+    }
+
+    renderLesson();
+};
+
+get("nextButton").onclick = () => {
+
+    if (
+        lessonIndex <
+        modules[moduleIndex].lessons.length - 1
+    ) {
+        lessonIndex++;
+    } else {
+        moduleIndex++;
+        lessonIndex = 0;
+    }
+
+    renderLesson();
+};
+
+get("continueButton").onclick = () => {
+    openCourse();
+};
+
+get("search").oninput = event => {
+
+    const keyword =
+        event.target.value.toLowerCase().trim();
+
+    if (!keyword) {
+        return;
+    }
+
+    for (let i = 0; i < modules.length; i++) {
+
+        for (let j = 0; j < modules[i].lessons.length; j++) {
+
+            const lesson =
+                modules[i].lessons[j];
+
+            const text =
+                (lesson[0] + " " + lesson[1]).toLowerCase();
+
+            if (text.includes(keyword)) {
+
+                moduleIndex = i;
+                lessonIndex = j;
+
+                openCourse();
+
+                return;
+            }
+        }
+    }
+};
+
+updateDashboard();
+renderProgress();
+renderAllNotes();
+
+</script>
+
+</body>
+</html>
